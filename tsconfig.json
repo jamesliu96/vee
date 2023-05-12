@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "rootDir": "src",
+    "outDir": "build",
+    "allowJs": true,
+    "paths": {}
+  },
+  "include": ["src"]
+}
