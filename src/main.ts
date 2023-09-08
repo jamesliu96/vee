@@ -41,16 +41,23 @@ addEventListener('load', async () => {
   button.textContent = 'RUN';
   button.addEventListener('click', async () => {
     const data = await input.files?.item(0)?.arrayBuffer();
+    const filename = input.files?.item(0)?.name ?? '';
     if (data) {
       const output = await Vee.faux(
         new Uint8Array(data),
         new TextEncoder().encode(key.value)
       );
-      outputImg.src = URL.createObjectURL(new Blob([output]));
+      const src = URL.createObjectURL(new Blob([output]));
+      outputA.href = src;
+      outputA.download = filename;
+      outputImg.src = src;
     }
   });
   s2.append(button);
+  const outputA = document.createElement('a');
+  outputA.style.display = 'block';
   const outputImg = document.createElement('img');
   outputImg.style.width = '100%';
-  s3.append(outputImg);
+  outputA.append(outputImg);
+  s3.append(outputA);
 });
