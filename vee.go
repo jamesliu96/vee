@@ -11,12 +11,9 @@ import (
 func main() {
 	// const faux: (data: Bytes, key: Bytes) => Promise<Bytes>;
 	vee.Global.Set("faux", vee.PromiseOf(func(this js.Value, args []js.Value) any {
-		data := args[0]
-		key := args[1]
-		dataLen := data.Length()
-		dataBytes := make([]byte, dataLen)
-		keyLen := key.Length()
-		keyBytes := make([]byte, keyLen)
+		data, key := args[0], args[1]
+		dataBytes := make([]byte, data.Length())
+		keyBytes := make([]byte, key.Length())
 		js.CopyBytesToGo(dataBytes, data)
 		js.CopyBytesToGo(keyBytes, key)
 		r := bytes.NewBuffer(dataBytes)
